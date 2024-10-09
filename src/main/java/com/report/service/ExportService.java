@@ -51,9 +51,9 @@ public class ExportService {
 
             Font headerFont = FontFactory.getFont(FontFactory.HELVETICA);
             
-            ClassPathResource fontResource = new ClassPathResource("fonts/NotoSansMyanmar-Regular.ttf");
+            ClassPathResource fontResource = new ClassPathResource("fonts/Myanmar3_2018.ttf");
             var fontStream = fontResource.getInputStream();
-            BaseFont unicodeFont = BaseFont.createFont("NotoSansMyanmar-Regular.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED, true, fontStream.readAllBytes(), null);
+            BaseFont unicodeFont = BaseFont.createFont("Myanmar3_2018.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED, true, fontStream.readAllBytes(), null);
             Font font = new Font(unicodeFont, 12);
            
             font.setColor(Color.BLACK);
@@ -80,7 +80,7 @@ public class ExportService {
     }
 
 
-
+    
 
 
 

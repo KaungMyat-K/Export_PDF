@@ -3,6 +3,7 @@ package com.report.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.report.service.ExportByITextService;
 import com.report.service.ExportService;
 
 import java.text.DateFormat;
@@ -20,6 +21,9 @@ public class ExportController {
 
     @Autowired
     private ExportService exportService;
+
+    @Autowired
+    private ExportByITextService exportByITextService;
     
     @GetMapping("/openPdf")
     public void exportPdfByOpenPdf(HttpServletResponse response) {
@@ -32,7 +36,16 @@ public class ExportController {
         exportService.generatePdfByOpenPDF(response);
     }
     
-
+    @GetMapping("/iText")
+    public void exportPdfByItext(HttpServletResponse response) {
+        response.setContentType("application/pdf");
+        DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD:HH:MM:SS");
+        String currentDateTime = dateFormat.format(new Date());
+        String headerkey = "Content-Disposition";
+        String headervalue = "attachment; filename=student" + currentDateTime + ".pdf";
+        response.setHeader(headerkey, headervalue);
+        exportByITextService.generatePdfByItext(response);
+    }
     
 
 
